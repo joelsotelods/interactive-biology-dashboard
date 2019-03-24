@@ -33,15 +33,13 @@ function buildCharts(sample) {
 	}
 	);
 
+	// BONUS: Build the Gauge Chart
 	d3.json("/metadata/"+sample).then( (data) => {
 
 		console.log("metadata:");
 		console.log(data);
 	
-		// BONUS: Build the Gauge Chart
-		// buildGauge(data.WFREQ);
-		// gauge_plot(sampleNames);
-		buildGauge(data.WFREQ);
+		gauge_plot(data.WFREQ);
 
 	});
 
