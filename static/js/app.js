@@ -1,42 +1,36 @@
 function buildMetadata(sample) {
 
-	// @TODO: Complete the following function that builds the metadata panel
+	d3.json("/metadata/"+sample).then((data) => {
 
-	// Use `d3.json` to fetch the metadata for a sample
-	// Use d3 to select the panel with id of `#sample-metadata`
+		console.log(data)
+	
+		var selector = d3.select("#sample-metadata");
 
-	// Use `.html("") to clear any existing metadata
+		selector.html("");
 
-	// Use `Object.entries` to add each key and value pair to the panel
-	// Hint: Inside the loop, you will need to use d3 to append new
-	// tags for each key-value in the metadata.
+		d3.select("#sample-metadata").append("table").append("tbody");
+		Object.entries(data).forEach(([key, value]) => 
+			d3.select("tbody").append("tr").html(`<td><b>${key}</b>: ${value}</td>`)
+		);
+
+	});
+
 
 	// BONUS: Build the Gauge Chart
 	// buildGauge(data.WFREQ);
 }
 
-function displayMetaData(metaResponse) {
-	let displayPanel = document.getElementById('displayMeta');
-	displayPanel.innerHTML = '';
-	
-	for ( var key in metaResponse) {
-			info = document.createElement("h5");
-			infoText = document.createTextNode(`${key}: ${metaResponse[key]}`);
-			info.append(infoText);
-			displayPanel.appendChild(info);
-			};
-}
-
-
 
 function buildCharts(sample) {
 	
+	console.log(sample);
+
 	d3.json("/samples/"+sample).then((sampleNames) => {
 		 
-		// console.log(sampleNames);
+		console.log(sampleNames);
 	 
 		pie_chart(sampleNames);
-		gauge_plot(sampleNames);
+		//gauge_plot(sampleNames);
 		scatter_plot(sampleNames);
 		
 	}
