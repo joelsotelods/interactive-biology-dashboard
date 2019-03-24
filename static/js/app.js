@@ -15,15 +15,34 @@ function buildMetadata(sample) {
     // buildGauge(data.WFREQ);
 }
 
+function displayMetaData(metaResponse) {
+  let displayPanel = document.getElementById('displayMeta');
+  displayPanel.innerHTML = '';
+  
+  for ( var key in metaResponse) {
+      info = document.createElement("h5");
+      infoText = document.createTextNode(`${key}: ${metaResponse[key]}`);
+      info.append(infoText);
+      displayPanel.appendChild(info);
+      };
+}
+
+
+
 function buildCharts(sample) {
-
   // @TODO: Use `d3.json` to fetch the sample data for the plots
+  
+  d3.json("/samples/"+sample).then((sampleNames) => {
+     
+    // console.log(sampleNames)
+    // sampleNames.sort(compare);
+   
+    pie_chart(sampleNames);
 
-    // @TODO: Build a Bubble Chart using the sample data
+    scatter_plot(sampleNames);
+  }
+  );
 
-    // @TODO: Build a Pie Chart
-    // HINT: You will need to use slice() to grab the top 10 sample_values,
-    // otu_ids, and labels (10 each).
 }
 
 function init() {
