@@ -30,16 +30,15 @@ function displayMetaData(metaResponse) {
 
 
 function buildCharts(sample) {
-  // @TODO: Use `d3.json` to fetch the sample data for the plots
   
   d3.json("/samples/"+sample).then((sampleNames) => {
      
-    // console.log(sampleNames)
-    // sampleNames.sort(compare);
+    // console.log(sampleNames);
    
     pie_chart(sampleNames);
-
+    gauge_plot(sampleNames);
     scatter_plot(sampleNames);
+    
   }
   );
 

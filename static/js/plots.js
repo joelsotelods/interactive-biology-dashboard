@@ -1,12 +1,10 @@
 
-
 // Part 1
 // PIE CHART
 
-
 function pie_chart(sample_data) {
-    var data = [{
 
+    var data = [{
         values: sample_data.sample_values.slice(0, 10),
         labels: sample_data.otu_ids.slice(0, 10),
         hovertext: sample_data.otu_labels.slice(0, 10),
@@ -14,10 +12,10 @@ function pie_chart(sample_data) {
     }];
 
     var layout = {
-        title: "'Bar' Chart",
+        title: "<b>Pie Chart</b> <br> qwerty",
         // height: 400,
         //  width: 900
-      };
+    };
 
     Plotly.plot("pie", data, layout);
 }
@@ -95,8 +93,6 @@ function gauge_plot() {
 
 }
 
-gauge_plot();
-
 
 // Part 3
 // Scatter
@@ -112,25 +108,25 @@ function scatter_plot(sample_data) {
         type: "scatter",
         name: "high jump",
         marker: {
-          size: sample_data.sample_values,
-          color: sample_data.otu_ids,
-          showscale: true
+            size: sample_data.sample_values,
+            color: sample_data.otu_ids,
+            showscale: true
         }
-      };
-      
-      // Create the data array for the plot
-      var data = [trace1];
-      
-      var layout = {
-        title: "xasd",
-        xaxis: { title: "asdwdwd" },
-        yaxis: { title: "awda wad awd" },
+    };
+
+    // Create the data array for the plot
+    var data = [trace1];
+
+    var layout = {
+        title: "<b>Bubble Plot</b> <br> qwerty",
+        xaxis: { title: "otu_ids" },
+        yaxis: { title: "sample_values" },
         showlegend: false,
         height: 600,
         // width: 900
-      };
-      
-      // Plot the chart to a div tag with id "plot"
+    };
+
+    // Plot the chart to a div tag with id "plot"
     Plotly.newPlot("bubble", data, layout);
 
 }
