@@ -3,6 +3,12 @@
 // PIE CHART
 
 function pie_chart(sample_data) {
+    
+    //clean html to make sure everything gets rewriten well
+    var pie_selector = d3.select("#pie_container");
+    pie_selector.html("");
+    d3.select('#pie_container').html('<div id="pie"></div>');
+
 
     var data = [{
         values: sample_data.sample_values.slice(0, 10),
@@ -12,7 +18,7 @@ function pie_chart(sample_data) {
     }];
 
     var layout = {
-        title: "<b>Pie Chart</b> <br> qwerty",
+        title: "<b>Pie Chart</b> <br> sup bru!",
         // height: 400,
         //  width: 900
     };
@@ -20,13 +26,70 @@ function pie_chart(sample_data) {
     Plotly.plot("pie", data, layout);
 }
 
-//pie_chart();
+
+
+// Part 3
+// Scatter
+
+
+
+function scatter_plot(sample_data) {
+
+    //clean html to make sure everything gets rewriten well
+    var bubble_selector = d3.select("#bubble_container");
+    bubble_selector.html("");
+    d3.select('#bubble_container').html('<div id="bubble"></div>');
+
+    // Create the Traces
+    var trace1 = {
+        x: sample_data.otu_ids,
+        y: sample_data.sample_values,
+        text: sample_data.otu_labels,
+        mode: "markers",
+        type: "scatter",
+        name: "high jump",
+        marker: {
+            size: sample_data.sample_values,
+            color: sample_data.otu_ids,
+            showscale: true
+        }
+    };
+
+    // Create the data array for the plot
+    var data = [trace1];
+
+    var layout = {
+        title: "<b>Bubble Plot</b> <br> sup bru!",
+        xaxis: { title: "otu_ids" },
+        yaxis: { title: "sample_values" },
+        showlegend: false,
+        height: 600,
+        // width: 900
+    };
+
+    // Plot the chart to a div tag with id "plot"
+    Plotly.newPlot("bubble", data, layout);
+
+}
+
 
 
 // Part 2
 // GAUGE
 
+function buildGauge(xxx) {
+    
+    //clean html to make sure everything gets rewriten well
+    var gauge_selector = d3.select("#gauge_container");
+    gauge_selector.html("");
+    d3.select('#gauge_container').html('<div id="gauge"></div>');
+
+}
+
 function gauge_plot() {
+
+    
+
 
     // Enter a speed between 0 and 180
     var level = 175;
@@ -80,7 +143,7 @@ function gauge_plot() {
                 color: "850000"
             }
             }],
-        title: "<b>Gauge</b> <br> Speed 0-100",
+        title: "<b>Gauge</b> <br> sup bru!",
         // height: 1000,
         // width: 1000,
         xaxis: {zeroline:false, showticklabels:false,
@@ -92,42 +155,3 @@ function gauge_plot() {
     Plotly.newPlot("gauge", data, layout, {showSendToCloud:true});
 
 }
-
-
-// Part 3
-// Scatter
-
-function scatter_plot(sample_data) {
-
-    // Create the Traces
-    var trace1 = {
-        x: sample_data.otu_ids,
-        y: sample_data.sample_values,
-        text: sample_data.otu_labels,
-        mode: "markers",
-        type: "scatter",
-        name: "high jump",
-        marker: {
-            size: sample_data.sample_values,
-            color: sample_data.otu_ids,
-            showscale: true
-        }
-    };
-
-    // Create the data array for the plot
-    var data = [trace1];
-
-    var layout = {
-        title: "<b>Bubble Plot</b> <br> qwerty",
-        xaxis: { title: "otu_ids" },
-        yaxis: { title: "sample_values" },
-        showlegend: false,
-        height: 600,
-        // width: 900
-    };
-
-    // Plot the chart to a div tag with id "plot"
-    Plotly.newPlot("bubble", data, layout);
-
-}
-

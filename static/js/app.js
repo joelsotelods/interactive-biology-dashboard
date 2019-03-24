@@ -1,11 +1,11 @@
 function buildMetadata(sample) {
 
-	d3.json("/metadata/"+sample).then((data) => {
+	d3.json("/metadata/"+sample).then( (data) => {
 
-		console.log(data)
-	
+		console.log("metadata x:");
+		console.log(data);
+
 		var selector = d3.select("#sample-metadata");
-
 		selector.html("");
 
 		d3.select("#sample-metadata").append("table").append("tbody");
@@ -14,27 +14,36 @@ function buildMetadata(sample) {
 		);
 
 	});
-
-
-	// BONUS: Build the Gauge Chart
-	// buildGauge(data.WFREQ);
 }
 
 
 function buildCharts(sample) {
 	
+	console.log("Sample:");
 	console.log(sample);
 
-	d3.json("/samples/"+sample).then((sampleNames) => {
-		 
-		console.log(sampleNames);
+	d3.json("/samples/"+sample).then( (all_samples) => {
+		
+		console.log("all_samples:");
+		console.log(all_samples);
 	 
-		pie_chart(sampleNames);
-		//gauge_plot(sampleNames);
-		scatter_plot(sampleNames);
+		pie_chart(all_samples);
+		scatter_plot(all_samples);
 		
 	}
 	);
+
+	d3.json("/metadata/"+sample).then( (data) => {
+
+		console.log("metadata:");
+		console.log(data);
+	
+		// BONUS: Build the Gauge Chart
+		// buildGauge(data.WFREQ);
+		// gauge_plot(sampleNames);
+		buildGauge(data.WFREQ);
+
+	});
 
 }
 
